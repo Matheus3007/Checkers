@@ -11,3 +11,17 @@ This is a simple implementation of a checkers game using Python and Pygame.
 | Piece.py    | Piece class, has functions regarding drawing itself and knows ownsership and current state.                                                                |
 | Main.py     | Placeholder file which calls the main pygame functions and starting the game, also controls the state machine responsible for displaying different screens |
 
+
+## Project roadmap
+
+#### Minimum
+ - [x] Board
+ - [ ] Piece behaviour
+ - [ ] Turn controller
+ - [ ] Game checker
+ - [ ] Debug mode
+ - [ ] Unity Testing
+#### Extras
+ - [ ] Screen controller
+ - [ ] 1P mode
+ - [ ] Alternative gamemodes
