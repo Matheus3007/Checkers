@@ -1,10 +1,12 @@
 # PyCheckers
 - [PyCheckers](#pycheckers)
+  - [What is this?](#what-is-this)
   - [Project outline](#project-outline)
   - [Project roadmap](#project-roadmap)
       - [Minimum](#minimum)
       - [Extras](#extras)
-  
+
+## What is this?
 This is a simple implementation of a checkers game using Python and Pygame.
 
 ## Project outline
