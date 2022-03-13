@@ -1,6 +1,8 @@
 import pygame
 import constant
 import board
+import game as g
+from EventControllers import *
 from pygame.locals import *
 pygame.init()
 
@@ -8,15 +10,19 @@ pygame.init()
 screen = pygame.display.set_mode((constant.BOARD_WIDTH, constant.BOARD_HEIGTH))
 newBoard = board.Board()
 
+game = g.Game(screen)
 gameOn = True
 while gameOn:
+    game.Update()
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+            row, col = GetPosFromMouse(pos)
+            game.Select(row, col)
         # Check for KEYDOWN event
         if event.type == KEYDOWN:
-             
             # If the Backspace key has been pressed set
             # running to false to exit the main loop
             if event.key == K_BACKSPACE:
                 gameOn = False
-    newBoard.drawAll(screen)
-    pygame.display.update()
+          
