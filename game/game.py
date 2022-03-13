@@ -30,23 +30,27 @@ class Game:
                 self.selected = None
                 self.Select(row,col)
         # If nothing's selected, try and select the square
-        else:
-            piece = self.board.GetPiece(row,col)
-            if piece != 0 and piece.color == self.turn:
-                
-                self.selected = piece
-                piece.selected = True
-                self.valid_moves = self.board.GetMoves(piece)
-                print(self.valid_moves)
-                return True
-            return False
+        
+        piece = self.board.GetPiece(row,col)
+        if piece != 0 and piece.color == self.turn:
             
+            self.selected = piece
+            piece.selected = True
+            self.valid_moves = self.board.GetMoves(piece)
+            print(self.valid_moves)
+            return True
+        self.valid_moves=[]
+        return False
+        
 
     def _Move(self, row, col):
         piece = self.board.GetPiece(row,col)
         # If the square is empty, move the piece towards the square
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             self.board.MovePieceOnBoard(self.selected, row, col)
+            skipped = self.valid_moves[(row,col)]
+            if skipped:
+                self.board.RemovePiece(skipped)
             self.ChangeTurn()
         else:
             return False
@@ -58,10 +62,14 @@ class Game:
             pygame.draw.circle(self.screen, (0,0,0), ((col * ct.SQUARE_SIDE) + int(ct.SQUARE_SIDE/2), (row * ct.SQUARE_SIDE) + int(ct.SQUARE_SIDE/2)), ct.PIECE_RADIUS/5)
 
     def ChangeTurn(self):
+        self.valid_moves = []
         if self.turn == ct.P1_CENTER:
             self.turn = ct.P2_CENTER
         else:
             self.turn = ct.P1_CENTER
+        if self.board.finished:
+            self.valid_moves = []
+            self.ResetGame()
     
     def GetTurn(self):
         return self.turn

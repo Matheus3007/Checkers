@@ -8,8 +8,6 @@ pygame.init()
 
 # Creates a new screen on which we'll draw the board
 screen = pygame.display.set_mode((constant.BOARD_WIDTH, constant.BOARD_HEIGTH))
-newBoard = board.Board()
-
 game = g.Game(screen)
 gameOn = True
 while gameOn:
@@ -21,9 +19,14 @@ while gameOn:
             game.Select(row, col)
             
         # Check for KEYDOWN event
+        if event.type == pygame.QUIT:
+            gameOn = False
         if event.type == KEYDOWN:
             # If the Backspace key has been pressed set
             # running to false to exit the main loop
             if event.key == K_BACKSPACE:
                 gameOn = False
+            elif event.key == K_r:
+                game.ResetGame()
+    
           

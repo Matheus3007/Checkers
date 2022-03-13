@@ -9,6 +9,7 @@ BOARD_SIZE = 8                                  # Number of squares in the side 
 SQUARE_SIDE = BOARD_WIDTH/BOARD_SIZE            # square side in pixels     
 SQUARE_CENTER = SQUARE_SIDE/2                   # square center in pixels
 PIECE_RADIUS = SQUARE_SIDE/3                    # radius of the piece in pixels
+PIECE_AMOUNT = 3*BOARD_SIZE/2                    # amount of pieces on the board
 
 # Color constants
 PRIMARY_COLOR=(2, 15, 59)

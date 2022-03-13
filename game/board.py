@@ -1,23 +1,26 @@
 import pygame
 import constant
 import piece
+import pyautogui
 
-
-class Board:                            # Define the game board as an array of squares
+class Board:                                    # Define the game board as an array of squares
     def __init__(self):
-        self.board = []                 # Internal array designed to manage the squares
-        self.DefineBoard()              # Define the board
+        self.board = []                         # Internal array designed to manage the squares
+        self.DefineBoard()                      # Define the board
+        self.p1_pieces = constant.PIECE_AMOUNT  # Initialize the amount of pieces for each player
+        self.p2_pieces = constant.PIECE_AMOUNT
+        self.finished = False                   # Initialize the game as not finished
+        print("P1 pieces: " +  str(self.p1_pieces))
+        print("P2 pieces: " +  str(self.p1_pieces))
     def DefineBoard(self):
         for i in range(constant.BOARD_SIZE):
             self.board.append([])
             for j in range(constant.BOARD_SIZE):
                 if j % 2 == ((i + 1) % 2):
-                    if i == 2:           # Top three rows where there are pieces
+                    if i < 3:           # Top three rows where there are pieces
                         self.board[i].append(piece.Piece((i, j), constant.P2_CENTER))
                     elif i > 4:         # Bottom three rows where there are pices
                         self.board[i].append(piece.Piece((i, j), constant.P1_CENTER))
-                    elif i==4 and j ==3:
-                        self.board[i].append(piece.Piece((i, j), constant.P2_CENTER))
                     else:               # Adds blank pieces for control
                         self.board[i].append(0)
                 else:                   # If squares where left unnatended add blank piece for debugging later
@@ -64,8 +67,8 @@ class Board:                            # Define the game board as an array of s
             moves.update(self._RightDiagonal(row-1, max(row-3, -1), -1, piece.color, squareRight))
         
         if piece.color == constant.P2_CENTER or piece.crowned:
-            moves.update(self._LeftDiagonal(row+1, max(row+3, constant.BOARD_SIZE), 1, piece.color, squareLeft))
-            moves.update(self._RightDiagonal(row+1, max(row+3, constant.BOARD_SIZE), 1, piece.color, squareRight))
+            moves.update(self._LeftDiagonal(row+1, min(row+3, constant.BOARD_SIZE), 1, piece.color, squareLeft))
+            moves.update(self._RightDiagonal(row+1, min(row+3, constant.BOARD_SIZE), 1, piece.color, squareRight))
 
         return moves
 
@@ -87,13 +90,12 @@ class Board:                            # Define the game board as an array of s
                 else:
                     moves[(r,left)] = last
                 if last:
-                    print("BOLA")
                     if direction == -1:
                         row = max(r-3, 0)
                     else:
                         row = min(r+3, constant.BOARD_SIZE-1)
                     moves.update(self._LeftDiagonal(r+direction, row, direction, color, left-1, skipped=last))
-                    moves.update(self._RightDiagonal(r+direction, row, direction, color, left-1, skipped=last))
+                    moves.update(self._RightDiagonal(r+direction, row, direction, color, left+1, skipped=last))
                 break
             elif current.color == color:
                 break                    
@@ -126,7 +128,7 @@ class Board:                            # Define the game board as an array of s
                     else:
                         row = min(r+3, constant.BOARD_SIZE-1)
                     moves.update(self._LeftDiagonal(r+direction, row, direction, color, right-1, skipped=last))
-                    moves.update(self._RightDiagonal(r+direction, row, direction, color, right-1, skipped=last))
+                    moves.update(self._RightDiagonal(r+direction, row, direction, color, right+1, skipped=last))
                 break
             elif current.color == color:
                 break                    
@@ -137,3 +139,21 @@ class Board:                            # Define the game board as an array of s
 
         return moves
 
+
+    def RemovePiece(self, pieces):
+        for piece in pieces:
+            self.board[piece.row][piece.col] = 0
+            if piece != 0:
+                if piece.color == constant.P1_CENTER:
+                    self.p1_pieces -= 1
+                    print(self.p1_pieces)
+                elif piece.color == constant.P2_CENTER:
+                    self.p2_pieces -= 1
+                    print(self.p2_pieces)
+        if self.p1_pieces == 0:
+            pyautogui.alert("Player 2 wins!")
+            self.finished = True
+        elif self.p2_pieces == 0:
+            pyautogui.alert("Player 1 wins!")
+            self.finished = True
+        
