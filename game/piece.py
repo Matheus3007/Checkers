@@ -46,6 +46,7 @@ class Piece:
 
     def select(self):
         self.selected = True
+
     def movePiece(self, newRow, newCol):
         self.row = newRow
         self.col = newCol

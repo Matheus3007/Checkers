@@ -19,6 +19,7 @@ while gameOn:
             pos = pygame.mouse.get_pos()
             row, col = GetPosFromMouse(pos)
             game.Select(row, col)
+            
         # Check for KEYDOWN event
         if event.type == KEYDOWN:
             # If the Backspace key has been pressed set

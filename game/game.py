@@ -47,6 +47,7 @@ class Game:
         # If the square is empty, move the piece towards the square
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             self.board.MovePieceOnBoard(self.selected, row, col)
+            self.ChangeTurn()
         else:
             return False
         return True
