@@ -1,3 +1,4 @@
+import pygame
 # Contains main constants used in the game
 
 # Dimensional constants:
@@ -12,14 +13,18 @@ PIECE_RADIUS = SQUARE_SIDE / 3  # radius of the piece in pixels
 PIECE_AMOUNT = 3 * BOARD_SIZE / 2  # amount of pieces on the board
 
 # Color constants
-PRIMARY_COLOR = (2, 15, 59)
-SECONDARY_COLOR = (255, 201, 39)
+PRIMARY_COLOR = (65, 0, 118)
+SECONDARY_COLOR = (232,230,227)
 VALIDMOVE_COLOR = (0, 0, 0)
 # P1
-P1_CENTER = (17, 51, 174)
-P1_BORDER = (72, 108, 240)
-P1_HIGHLIGHT = (232, 194, 58)
+P1_CENTER = (84, 27, 130)
+P1_BORDER = (40, 11, 64)
+P1_HIGHLIGHT = (232, 205, 2)
 # P2
-P2_CENTER = (255, 201, 39)
-P2_BORDER = (166, 129, 18)
-P2_HIGHLIGHT = (33, 79, 217)
+P2_CENTER = (214, 213, 210)
+P2_BORDER = (152, 149, 149)
+P2_HIGHLIGHT = (153, 5, 5)
+
+#Crowns
+P1_CROWN = pygame.transform.scale(pygame.image.load('game\sources\QultureIconPurple.png'), (PIECE_RADIUS*2, PIECE_RADIUS*2))
+P2_CROWN = pygame.transform.scale(pygame.image.load('game\sources\QultureIconWhite.png'), (PIECE_RADIUS*2, PIECE_RADIUS*2))

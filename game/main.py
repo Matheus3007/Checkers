@@ -10,7 +10,7 @@ pygame.init()
 
 # Creates a new screen on which we'll draw the board
 screen = pygame.display.set_mode((constant.BOARD_WIDTH, constant.BOARD_HEIGTH))
-game = g.Game(screen)
+game = g.Game(screen,True)
 gameOn = True
 while gameOn:
     game.Update()

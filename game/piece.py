@@ -36,6 +36,13 @@ class Piece:
 
     # Draws the piece on the screen
     def DrawPiece(self, screen):
+        if self.crowned:
+            pygame.draw.circle(
+                screen,
+                self.colorHighlight,
+                (self.center_x, self.center_y),
+                constant.PIECE_RADIUS+2,
+            )
         pygame.draw.circle(
             screen,
             self.colorBorder,
@@ -49,12 +56,12 @@ class Piece:
             constant.PIECE_RADIUS - 5,
         )
         if self.crowned:
-            pygame.draw.circle(
-                screen,
-                self.colorBorder,
-                (self.center_x, self.center_y),
-                constant.PIECE_RADIUS / 2,
-            )
+            if self.color == constant.P1_CENTER:
+                screen.blit(constant.P1_CROWN, (self.center_x - constant.P1_CROWN.get_width()//2, self.center_y - constant.P1_CROWN.get_height()//2))
+            else:
+                screen.blit(constant.P2_CROWN, (self.center_x - constant.P1_CROWN.get_width()//2, self.center_y - constant.P1_CROWN.get_height()//2))
+
+            
 
     def movePiece(self, newRow, newCol):
         self.row = newRow
