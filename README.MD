@@ -19,7 +19,7 @@ This is a simple implementation of a checkers game using Python and Pygame.
 | File        | Purpose                                                                                                                                 |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Constant.py | Stores parameters used mainly when building the Graphical Environment                                                                    |
-| Board.py    | General controlles, the brain which controls the pieces, draws itself and controls current turn                                         |
+| Board.py    | General controlls, the brain which controls the pieces, draws itself and controls current turn                                         |
 | Piece.py    | Piece class, has functions regarding drawing itself and knows ownsership and current state.                                             |
 | Game.py     | General integration files, merges draw functions with control functions, responsible for selecting pieces and displaying their movement |
 | Main.py     | File which calls game related functions and creates the screen, go here if you want to activate debug mode                              |

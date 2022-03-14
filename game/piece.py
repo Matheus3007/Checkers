@@ -3,7 +3,7 @@ from turtle import onclick
 import constant
 import pygame
 from pygame.locals import *
-
+pygame.mixer.init()
 
 class Piece:
     def __init__(self, square, color):

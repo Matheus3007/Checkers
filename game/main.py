@@ -7,6 +7,7 @@ from pygame.locals import *
 import game as g
 
 pygame.init()
+pygame.mixer.init()
 
 # Creates a new screen on which we'll draw the board
 screen = pygame.display.set_mode((constant.BOARD_WIDTH, constant.BOARD_HEIGTH))

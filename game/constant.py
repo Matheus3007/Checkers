@@ -28,3 +28,8 @@ P2_HIGHLIGHT = (153, 5, 5)
 #Crowns
 P1_CROWN = pygame.transform.scale(pygame.image.load('game\sources\QultureIconPurple.png'), (PIECE_RADIUS*2, PIECE_RADIUS*2))
 P2_CROWN = pygame.transform.scale(pygame.image.load('game\sources\QultureIconWhite.png'), (PIECE_RADIUS*2, PIECE_RADIUS*2))
+
+# Sounds
+pygame.mixer.init()
+MOVE_SOUND = pygame.mixer.Sound('game\sources\PieceSound.wav')
+CAPTURE_SOUND = pygame.mixer.Sound('game\sources\Capture.wav')

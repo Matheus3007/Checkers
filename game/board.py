@@ -93,6 +93,7 @@ class Board:  # Define the game board as an array of squares
             self.board[piece.row][piece.col],
         )  # Swaps the piece with the blank in the new location
         piece.movePiece(row, col)
+        pygame.mixer.Sound.play(constant.MOVE_SOUND)
         if (
             row == 0 or row == constant.BOARD_SIZE - 1 and piece.crowned == False
         ):  # Crowns pieces on the last line of the board
@@ -246,6 +247,7 @@ class Board:  # Define the game board as an array of squares
                 elif piece.color == constant.P2_CENTER:
                     self.p2_pieces -= 1
                     print(self.p2_pieces)
+        pygame.mixer.Sound.play(constant.CAPTURE_SOUND)
         if self.p1_pieces == 0:
             self.finished = True
             if (
