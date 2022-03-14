@@ -1,9 +1,11 @@
-import pygame
-import constant
 import board
-import game as g
+import constant
+import pygame
 from EventControllers import *
 from pygame.locals import *
+
+import game as g
+
 pygame.init()
 
 # Creates a new screen on which we'll draw the board
@@ -17,7 +19,7 @@ while gameOn:
             pos = pygame.mouse.get_pos()
             row, col = GetPosFromMouse(pos)
             game.Select(row, col)
-            
+
         # Check for KEYDOWN event
         if event.type == pygame.QUIT:
             gameOn = False
@@ -28,5 +30,3 @@ while gameOn:
                 gameOn = False
             elif event.key == K_r:
                 game.ResetGame()
-    
-          

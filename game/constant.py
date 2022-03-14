@@ -2,23 +2,24 @@
 
 # Dimensional constants:
 
-BOARD_WIDTH = 600                               # Width of the game board in pixels
-BOARD_HEIGTH = BOARD_WIDTH                      # Height of the game board in pixels
+BOARD_WIDTH = 600  # Width of the game board in pixels
+BOARD_HEIGTH = BOARD_WIDTH  # Height of the game board in pixels
 
-BOARD_SIZE = 8                                  # Number of squares in the side of the board
-SQUARE_SIDE = BOARD_WIDTH/BOARD_SIZE            # square side in pixels     
-SQUARE_CENTER = SQUARE_SIDE/2                   # square center in pixels
-PIECE_RADIUS = SQUARE_SIDE/3                    # radius of the piece in pixels
-PIECE_AMOUNT = 3*BOARD_SIZE/2                    # amount of pieces on the board
+BOARD_SIZE = 8  # Number of squares in the side of the board
+SQUARE_SIDE = BOARD_WIDTH / BOARD_SIZE  # square side in pixels
+SQUARE_CENTER = SQUARE_SIDE / 2  # square center in pixels
+PIECE_RADIUS = SQUARE_SIDE / 3  # radius of the piece in pixels
+PIECE_AMOUNT = 3 * BOARD_SIZE / 2  # amount of pieces on the board
 
 # Color constants
-PRIMARY_COLOR=(2, 15, 59)
-SECONDARY_COLOR=(255, 201, 39)
+PRIMARY_COLOR = (2, 15, 59)
+SECONDARY_COLOR = (255, 201, 39)
+VALIDMOVE_COLOR = (0, 0, 0)
 # P1
-P1_CENTER=(17, 51, 174)
-P1_BORDER=(72, 108, 240)
-P1_HIGHLIGHT=(232, 194, 58)
+P1_CENTER = (17, 51, 174)
+P1_BORDER = (72, 108, 240)
+P1_HIGHLIGHT = (232, 194, 58)
 # P2
-P2_CENTER=(255, 201, 39)
-P2_BORDER=(166, 129, 18)
-P2_HIGHLIGHT=(33, 79, 217)
+P2_CENTER = (255, 201, 39)
+P2_BORDER = (166, 129, 18)
+P2_HIGHLIGHT = (33, 79, 217)
