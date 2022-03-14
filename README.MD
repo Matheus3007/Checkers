@@ -9,6 +9,7 @@
     - [piece.py](#piecepy)
     - [board.py](#boardpy)
     - [game.py](#gamepy)
+  - [Running the game](#running-the-game)
 
 ## What is this?
 This is a simple implementation of a checkers game using Python and Pygame.
@@ -17,7 +18,7 @@ This is a simple implementation of a checkers game using Python and Pygame.
 
 | File        | Purpose                                                                                                                                 |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Constant.py | Stores functions used mainly when building the Graphical Environment                                                                    |
+| Constant.py | Stores parameters used mainly when building the Graphical Environment                                                                    |
 | Board.py    | General controlles, the brain which controls the pieces, draws itself and controls current turn                                         |
 | Piece.py    | Piece class, has functions regarding drawing itself and knows ownsership and current state.                                             |
 | Game.py     | General integration files, merges draw functions with control functions, responsible for selecting pieces and displaying their movement |
@@ -75,3 +76,16 @@ Game() has an attribute that defaults to false just as Board(), so that the user
 | Move(row, col)   | Given a square, move a piece towards that square, as long as it's empty                                                                                                                                                                                                                                                                                                           |
 | DrawMoves(moves) | Given a list of squares that represent the valid moves for a piece, signal them to the user onscreen.                                                                                                                                                                                                                                                                             |
 | ChangeTurn()     | Turn manager for the game, P1 starts playing. The bottom player is P1.                                                                                                                                                                                                                                                                                                            |
+
+## Running the game
+To run the game you simply run the ```main.py``` file that's inside the game directory:
+```python
+python3 main.py
+
+```
+
+To run tests you can use the ```tests.py``` file that's in the same directory, although to use it you must run it as so:
+```python
+python3 -m unittest tests.py
+
+```
