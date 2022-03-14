@@ -11,7 +11,7 @@ pygame.mixer.init()
 
 # Creates a new screen on which we'll draw the board
 screen = pygame.display.set_mode((constant.BOARD_WIDTH, constant.BOARD_HEIGTH))
-game = g.Game(screen,True)
+game = g.Game(screen)
 gameOn = True
 while gameOn:
     game.Update()
