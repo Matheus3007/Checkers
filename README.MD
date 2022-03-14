@@ -23,9 +23,9 @@ This is a simple implementation of a checkers game using Python and Pygame.
 
 #### Minimum
  - [x] Board
- - [ ] Piece behaviour
- - [ ] Turn controller
- - [ ] Game checker
+ - [x] Piece behaviour
+ - [x] Turn controller
+ - [x] Game checker
  - [ ] Debug mode
  - [ ] Unity Testing
 #### Extras

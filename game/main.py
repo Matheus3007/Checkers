@@ -24,7 +24,7 @@ while gameOn:
         if event.type == KEYDOWN:
             # If the Backspace key has been pressed set
             # running to false to exit the main loop
-            if event.key == K_BACKSPACE:
+            if event.key == K_BACKSPACE or event.key == K_ESCAPE:
                 gameOn = False
             elif event.key == K_r:
                 game.ResetGame()

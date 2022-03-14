@@ -4,11 +4,26 @@ import piece
 import pyautogui
 
 class Board:                                    # Define the game board as an array of squares
-    def __init__(self):
+    def __init__(self, debug=False):
+        self.debug=debug
         self.board = []                         # Internal array designed to manage the squares
-        self.DefineBoard()                      # Define the board
-        self.p1_pieces = constant.PIECE_AMOUNT  # Initialize the amount of pieces for each player
-        self.p2_pieces = constant.PIECE_AMOUNT
+        if debug:
+            self.DefineTestBoard()              # Define the board for debugging purposes
+        else:
+            self.DefineBoard()                  # Define the board normally
+
+        self.p1_pieces = 0                      # Initialize the amount of pieces for each player
+        self.p2_pieces = 0
+
+        for row in range(constant.BOARD_SIZE):         # Counts the amount of pieces for each player
+            for col in range(constant.BOARD_SIZE):
+                piece = self.GetPiece(row, col)
+                if piece != 0:
+                    if piece.color==constant.P1_CENTER:
+                        self.p1_pieces += 1
+                    elif piece.color==constant.P2_CENTER:
+                        self.p2_pieces += 1
+
         self.finished = False                   # Initialize the game as not finished
         print("P1 pieces: " +  str(self.p1_pieces))
         print("P2 pieces: " +  str(self.p1_pieces))
@@ -25,6 +40,22 @@ class Board:                                    # Define the game board as an ar
                         self.board[i].append(0)
                 else:                   # If squares where left unnatended add blank piece for debugging later
                     self.board[i].append(0)
+
+                
+    def DefineTestBoard(self): # Creates a test board for debugging purposes
+        for i in range(constant.BOARD_SIZE):
+            self.board.append([])
+            for j in range(constant.BOARD_SIZE):
+                if j % 2 == ((i + 1) % 2):
+                    if (i==4 and j == 3) or (i == 2 and j == 5):           # Top three rows where there are pieces
+                        self.board[i].append(piece.Piece((i, j), constant.P2_CENTER))
+                    elif i == 5 and j == 2:         # Bottom three rows where there are pices
+                        self.board[i].append(piece.Piece((i, j), constant.P1_CENTER))
+                    else:               # Adds blank pieces for control
+                        self.board[i].append(0)
+                else:                   # If squares where left unnatended add blank piece for debugging later
+                    self.board[i].append(0)
+        pass
 
     # Function related to drawing the squares on the screen
     def DrawBoard(self, screen):
@@ -46,7 +77,6 @@ class Board:                                    # Define the game board as an ar
     def MovePieceOnBoard(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]     # Swaps the piece with the blank in the new location
         piece.movePiece(row, col)
-        print("bola")
         if row == 0 or row== constant.BOARD_SIZE-1 and piece.crowned == False: # Crowns pieces on the last line of the board
             piece.CrownPiece()
     
@@ -151,9 +181,11 @@ class Board:                                    # Define the game board as an ar
                     self.p2_pieces -= 1
                     print(self.p2_pieces)
         if self.p1_pieces == 0:
-            pyautogui.alert("Player 2 wins!")
             self.finished = True
+            if not self.debug:                  # If the game is not in debug mode, it will show the winner
+                pyautogui.alert("Player 2 wins!")
         elif self.p2_pieces == 0:
-            pyautogui.alert("Player 1 wins!")
             self.finished = True
+            if not self.debug:
+                pyautogui.alert("Player 1 wins!")
         

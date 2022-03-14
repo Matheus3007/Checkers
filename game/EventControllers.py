@@ -14,5 +14,4 @@ def MovePieceWithMouse(pos, board):
     piece = board.GetPiece(pos[0], pos[1])
     
     if piece != 0:
-        print(piece.dir)
         board.MovePieceOnBoard(piece,3,4)

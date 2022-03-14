@@ -3,9 +3,9 @@ import constant as ct
 import board
 
 class Game:
-    def __init__(self, scr):
+    def __init__(self, scr,debug=False): # Allows the game to be booted in debug mode, which has a different board pattern
         self.selected = None
-        self.board = board.Board()
+        self.board = board.Board(debug)
         self.turn = ct.P1_CENTER
         self.valid_moves = {}
         self.screen = scr
@@ -16,12 +16,16 @@ class Game:
         self.DrawMoves(self.valid_moves)
         pygame.display.update()
 
+
+    # Resets the game, called upon completion or when the player presses the 'r' key
     def ResetGame(self):
         self.selcted = None
         self.board = board.Board()
         self.turn = ct.P1_CENTER
         self.valid_moves = {}
-        
+
+
+    # Selects a piece, if the piece is not already selected, and if the piece belongs to the current player    
     def Select(self, row, col):
         # If something's selected already, try and move selection towards the new square
         if self.selected:
@@ -39,7 +43,7 @@ class Game:
             self.valid_moves = self.board.GetMoves(piece)
             print(self.valid_moves)
             return True
-        self.valid_moves=[]
+        self.valid_moves=[] # If the square is empty, or if the piece is not the current player's, clear the valid moves
         return False
         
 
